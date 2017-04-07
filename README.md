@@ -25,7 +25,7 @@ A small library that creates button assignments for loading a vending machine. C
 
 ```js
 
-  var loadMachine = require('@rrgayhart/load-machine');
+  var loadMachine = require('load-machine');
 
   var candies = [
     {name: 'Twix Bar'},
@@ -74,18 +74,7 @@ mkdir load-machine
 cd load-machine
 ```
 
-All you have to do is make a `package.json` file
-
-```
-npm init
-```
-
 Where do we start writing code?
-
-```js
-// package.json
-"main": "index.js",
-```
 
 ```
 touch index.js
@@ -107,6 +96,72 @@ Update scripts in the package.json
 ```
 "scripts": {
   "test": "mocha --reporter spec"
+}
+```
+
+## Packaging
+
+#### Creating a User
+
+```
+  npm adduser
+  npm login
+```
+
+<cite>[documentation](https://docs.npmjs.com/cli/adduser)</cite>
+
+#### NPM init
+
+I have made sure my app is up on Github first (allows NPM to autofill the repository details, which is nice)
+
+Now I'll set npm up by running:
+
+```
+  npm init --scope=username
+```
+
+Note: I am [namespacing](https://docs.npmjs.com/getting-started/scoped-packages#initializing-a-scoped-package) my module, so that I don't hijack a name that someone else could use for a far better npm module than this one :D
+
+The resulting JSON looks like:
+
+
+```js
+{
+  "name": "@rrgayhart/load-machine",
+  "version": "1.0.0",
+  "description": "'my first npm module'",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter nyan",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
+  },
+  "author": "Romeeka Gayhart",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "mocha": "^3.2.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rrgayhart/load-machine.git"
+  },
+  "keywords": [
+    "vending",
+    "machine"
+  ],
+  "bugs": {
+    "url": "https://github.com/rrgayhart/load-machine/issues"
+  },
+  "homepage": "https://github.com/rrgayhart/load-machine#readme"
 }
 ```
 
@@ -147,45 +202,33 @@ VendingMachine.prototype.loadMachine = function(input){
 
 ## Deploying to NPM
 
-
-
-
-
-
-
-
-
-## Working with Existing NPM Packages
-
-```
-   npm view hook.io 
- ```
-
-
-## Creating a User
-
-```
-  npm adduser
-  npm login
-```
-
-<cite>[documentation](https://docs.npmjs.com/cli/adduser)</cite>
-
-## Publishing a Package
-
 ```
   npm publish
 ```
 
+Because I scoped my module, I will have to tell NPM that I want it to be public.
+
+So I actually used:
+
+```
+ npm publish --access=public
+```
+
+I can now go into my project and add the project directly
+
+```
+npm install --save @rrgayhart/load-machine
+```
+
+And I will call use the module by requiring it by it's name (without the scope)
+
+```js
+var loadMachine = require('load-machine')
+
+```
+
+And if I instantly regret my actions....
+
 ```
   npm unpublish [PACKAGE NAME]
 ```
-
-## Managing Package Owners
-
-```
- npm owner add [USER_NAME] [PACKAGE_NAME]
- npm owner rm [USER_NAME] [PACKAGE_NAME]
- npm owner ls [PACKAGE_NAME]
-```
-

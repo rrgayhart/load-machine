@@ -1,6 +1,6 @@
 {
-  "name": "load-machine",
-  "version": "1.0.0",
+  "name": "@rrgayhart/load-machine",
+  "version": "1.0.1",
   "description": "'my first npm module'",
   "main": "index.js",
   "scripts": {
@@ -14,5 +14,24 @@
     "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "mocha": "^3.2.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rrgayhart/load-machine.git"
+  },
+  "keywords": [
+    "vending",
+    "machine"
+  ],
+  "bugs": {
+    "url": "https://github.com/rrgayhart/load-machine/issues"
+  },
+  "homepage": "https://github.com/rrgayhart/load-machine#readme"
 }
